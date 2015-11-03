@@ -7,14 +7,14 @@ Il computer deve simulare di trovarsi all'interno di un labirinto di dimensioni 
 Il candidato forniti gli ulteriori dettagli necessari per lo sviluppo dell'analisi del problema, sviluppi con un linguaggio a sua scelta l'applicazione che risolvi l'esercizio.
 */
 
-// Librerie
+// Libraries
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
 #include <limits.h>
 
-// Costanti
+// Costants
 #define TRUE 1
 #define FALSE 0
 #define MIN 2
@@ -26,11 +26,11 @@ Il candidato forniti gli ulteriori dettagli necessari per lo sviluppo dell'anali
 #define FINE -6
 #define MURI 3
 
-// Variabili globali
+// Global variables
 int min[MAX][MAX], passi = INT_MAX , trovato = FALSE;
 long long int percorsi = 0;
 
-// Prototipi
+// Prototypes
 void title();
 void riempilabirinto(int mat[MAX][MAX], int l);
 void stampalabirinto(int mat[MAX][MAX], int l);
@@ -54,15 +54,15 @@ int main(){
   printf("LABIRINTO INIZIALE:\n");
   stampalabirinto(lab,l);
   posiziona(&sx,&sy,lab,l);
-  system("cls"); // Pulisco lo schermo per poi far stampare il labirinto risolto
+  system("cls"); // Clear the screen
   title();
   printf("\n\n");
   stampalabirinto(lab,l);
   printf("\nPremi per risolvere il labirinto! "); system("pause");
   
-  dirigi(lab,sx,sy,l,0); //Inizio: metto l'omino nella posizione iniziale di coordinate 0,0
+  dirigi(lab,sx,sy,l,0); //Start: position 0,0
     
-  if(trovato==TRUE){ //Fine: stampo il labirinto minore con il numero dei passi utilizzati se lo ho risolto.
+  if(trovato==TRUE){ //End: stampo il labirinto minore con il numero dei passi utilizzati se lo ho risolto.
 	system("cls"); // Pulisco lo schermo per poi far stampare il labirinto risolto
     title();
     printf("\nLABIRINTO RISOLTO:\n");
