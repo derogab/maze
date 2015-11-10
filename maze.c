@@ -1,10 +1,17 @@
 /*
-IL LABIRINTO DI MINOSSE
 
 Obiettivo:
 Sviluppare l'analisi e definire le procedure necessarie alla soluzione del seguente problema.
 Il computer deve simulare di trovarsi all'interno di un labirinto di dimensioni prefissate e a scelta del candidato e a aggiungere l'eventuale/i uscita/e specificando il traagitto più breve anche in modo grafico. IL labirinto può prevedere piazze (cioè zone ampie in cui è possibile l'accesso o strade cieche) è necessario prevedere il labirinto non abbia uscite, cioè ancora cieco.
-Il candidato forniti gli ulteriori dettagli necessari per lo sviluppo dell'analisi del problema, sviluppi con un linguaggio a sua scelta l'applicazione che risolvi l'esercizio.
+Il candidato, forniti gli ulteriori dettagli necessari per lo sviluppo dell'analisi del problema, sviluppi con un linguaggio a sua scelta l'applicazione che risolvi l'esercizio.
+
+
+The Maze 
+Goal:
+Develop the analysis and define the necessary procedures to solve the following problem.
+The computer has to pretend to be inside a maze of a fixed size, chosen by the user, and to add, if necessary, exit/s, specifying graphically the shortest way. The maze can have squares (places from which it is possible to start or in which there is no way out) and it has to say whether there is or there is not a way out. 
+
+
 */
 
 // Libraries
@@ -46,30 +53,30 @@ int main(){
   srand(time(NULL));
   title();
   do{
-      printf("Inserisci quanto e' lungo il labirinto da %d a %d:\n",MIN,MAX);
+      printf("Specify how long the maze is from %d to %d:\n",MIN,MAX);
       scanf("%d",&l);
   }while(l<MIN||l>MAX);
   riempilabirinto(lab,l);
   randfinish(&finex,&finey,lab,l);
-  printf("LABIRINTO INIZIALE:\n");
+  printf("THE INITIAL MAZE:\n");
   stampalabirinto(lab,l);
   posiziona(&sx,&sy,lab,l);
-  system("cls"); // Clear the screen
+  system("cls"); // Clears the screen
   title();
   printf("\n\n");
   stampalabirinto(lab,l);
-  printf("\nPremi per risolvere il labirinto! "); system("pause");
+  printf("\nPress ENTER to solve the maze! "); system("pause");
   
   dirigi(lab,sx,sy,l,0); //Start: position 0,0
     
-  if(trovato==TRUE){ //End: stampo il labirinto minore con il numero dei passi utilizzati se lo ho risolto.
-	system("cls"); // Pulisco lo schermo per poi far stampare il labirinto risolto
+  if(trovato==TRUE){ //End: prints the shortest way and the number of used steps if the maze has been solved.
+	system("cls"); // Clears the screen in order to print then the solved maze.
     title();
-    printf("\nLABIRINTO RISOLTO:\n");
-    stampalabirinto(min,l); printf("\n\nHo selezionato per te il percorso piu' veloce tra %lld percorsi possibili.\nPer raggiungere la fine bastano soltanto %d passi.\n\n",percorsi,passi);
+    printf("\nMAZE SOLVED:\n");
+    stampalabirinto(min,l); printf("\n\nI have picked for you the fastest way of %11d possible solutions.\nTo reach the exit, %d steps will be sufficient.\n\n",percorsi,passi);
   }
   else{
-	  printf("Nessun percorso trovato per risolvere questo labirinto.\n\n");
+	  printf("No way was found to solve this maze.\n\n");
   }
   
   system("pause");
@@ -107,7 +114,7 @@ void randfinish(int *x, int *y, int mat[MAX][MAX], int l){
     do{
         srand(time(NULL));
         dove=rand()%2;
-        if(dove==1){  // Su che lato è la fine?
+        if(dove==1){  // On which side is the exit?
             *x=rand()%l;
             *y=rand()%2;
             if(*y==1){
@@ -133,23 +140,23 @@ void stampalabirinto(int mat[MAX][MAX], int l){
      for(j=0;j<l;j++){ 
          if(mat[i][j]!=MURO){
 			 if(mat[i][j]==PERCORSO){
-				printf("%s","x");  //Percorso
+				printf("%s","x");  //Path
 			 }
 			 else{
 				if(mat[i][j]==START){
-					printf("%s","S");  //Inizio
+					printf("%s","S");  //Start
 				}
 				else{
 					if(mat[i][j]==FINE){
-						printf("%s","F");  //Fine
+						printf("%s","F");  //Exit
 					}
 					else{ 
-						printf("%s",".");  //Spazio Vuoto
+						printf("%s",".");  //Blank space
 					}
 				}
 			 }
 		 }
-		 else{ printf("%s","#"); } //Muro          
+		 else{ printf("%s","#"); } //Wall          
      }        
      printf("|\n");    
   }
@@ -159,39 +166,39 @@ void stampalabirinto(int mat[MAX][MAX], int l){
 
 void posiziona(int *x, int *y, int mat[MAX][MAX], int l){
     do{
-        printf("Inserisci la riga da cui partire: ");
+        printf("Enter the row from which you would like to start: ");
         scanf("%d",x);  *x=*x-1;
-        printf("Inserisci la colonna da cui partire: ");
+        printf("Enter the column from which you would like to start: ");
         scanf("%d",y);  *y=*y-1;
-        if(mat[*x][*y]==MURO){ printf("\nLa cella selezionata \212 un muro.\n"); }
-        if((*x>=l)||(*y>=l)||(*x<0)||(*y<0)){ printf("\nLa cella selezionata \212 fuori dal labirinto.\n"); }
-        if(mat[*x][*y]==FINE){ printf("\nLa cella selezionata \212 la FINE!.\n"); }
+        if(mat[*x][*y]==MURO){ printf("\nThe chosen cell is a wall.\n"); }
+        if((*x>=l)||(*y>=l)||(*x<0)||(*y<0)){ printf("\nThe chosen cell is not in the maze.\n"); }
+        if(mat[*x][*y]==FINE){ printf("\nThe chosen cell is the EXIT.\n"); }
     }while((mat[*x][*y]==MURO)||(mat[*x][*y]==FINE)||((*x>=l)||(*y>=l)||(*x<0)||(*y<0)));
     mat[*x][*y]=START;
 }
 
 void dirigi(int mat[MAX][MAX], int x, int y, int l, int cont){	
 	int nuovo_percorso = FALSE;
-	if((x<l)&&(y<l)&&(x>=0)&&(y>=0)&&(mat[x][y]!=PERCORSO)&&(mat[x][y]!=MURO)){  // Controllo se il punto è nel labirinto o se c'è un muro o se sono già passato
+	if((x<l)&&(y<l)&&(x>=0)&&(y>=0)&&(mat[x][y]!=PERCORSO)&&(mat[x][y]!=MURO)){  // Checks if the point is in the maze o if there is a wall or if I have already passed by.
 		if((mat[x][y]!=FINE)&&(mat[x][y]!=START)){ mat[x][y]=PERCORSO; }
         nuovo_percorso = TRUE;
-		if(mat[x][y]==FINE){  // Controlla se sono arrivato alla fine
+		if(mat[x][y]==FINE){  //Checks if I have reached the exit.
 			trovato = TRUE;
 			percorsi++;
-			if(cont<passi){ // Controllo se il percorso trovato è il più corto tra quelli trovati.
+			if(cont<passi){ // Checks if the chosen path is the shortest of all.
 				passi=cont;
 				copiamatrice(mat,min,l);
 			}
 		}
 		else{
-			dirigi(mat,x+1,y,l,cont+1);	//SUD
-			dirigi(mat,x,y+1,l,cont+1);	//EST
-			dirigi(mat,x-1,y,l,cont+1);	//NORD
-			dirigi(mat,x,y-1,l,cont+1);	//OVEST	
+			dirigi(mat,x+1,y,l,cont+1);	//SOUTH
+			dirigi(mat,x,y+1,l,cont+1);	//EAST
+			dirigi(mat,x-1,y,l,cont+1);	//NORTH
+			dirigi(mat,x,y-1,l,cont+1);	//WEST	
 		}	
 	}
 
-	if(nuovo_percorso==TRUE){ // Controllo se la briciola è stata messa adesso o in un viaggio precedente
+	if(nuovo_percorso==TRUE){ // Checks if the crumb has been left now or in past.
 		svuotaultimaposizione(mat,x,y);
 	}
 	return;
