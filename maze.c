@@ -87,7 +87,7 @@ printf("| ||_____||_____|| || ||____|  |____|| || |  |________|  | || | |_______
 printf("| |              | || |              | || |              | || |              | |\n");
 printf("| '--------------' || '--------------' || '--------------' || '--------------' |\n");
 printf(" +----------------'  '----------------'  '----------------'  '----------------' \n");
-printf("\t\tCopyright © 2014 De Rosa, Marta & Gentile\n\n");
+printf("\t\tCredits: De Rosa, Marta & Gentile\n\n");
 }
 
 void riempilabirinto(int mat[MAX][MAX], int l){
