@@ -1,17 +1,7 @@
 /*
-
-Obiettivo:
-Sviluppare l'analisi e definire le procedure necessarie alla soluzione del seguente problema.
-Il computer deve simulare di trovarsi all'interno di un labirinto di dimensioni prefissate e a scelta del candidato e a aggiungere l'eventuale/i uscita/e specificando il traagitto più breve anche in modo grafico. IL labirinto può prevedere piazze (cioè zone ampie in cui è possibile l'accesso o strade cieche) è necessario prevedere il labirinto non abbia uscite, cioè ancora cieco.
-Il candidato, forniti gli ulteriori dettagli necessari per lo sviluppo dell'analisi del problema, sviluppi con un linguaggio a sua scelta l'applicazione che risolvi l'esercizio.
-
-
 The Maze 
 Goal:
-Develop the analysis and define the necessary procedures to solve the following problem.
 The computer has to pretend to be inside a maze of a fixed size, chosen by the user, and to add, if necessary, exit/s, specifying graphically the shortest way. The maze can have squares (places from which it is possible to start or in which there is no way out) and it has to say whether there is or there is not a way out. 
-
-
 */
 
 // Libraries
