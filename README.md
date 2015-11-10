@@ -1,6 +1,6 @@
 # Maze
 
-![maze](https://cloud.githubusercontent.com/assets/4183824/11071366/dbdd637a-87e0-11e5-87d0-8403d7d1f542.png)
+![maze](https://cloud.githubusercontent.com/assets/4183824/11071527/8ad0685a-87e1-11e5-9773-55d67c0c7ca7.png)
 
 
 <h3>Goal</h3>
